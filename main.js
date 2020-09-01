@@ -273,7 +273,7 @@ class Button {
    }
 }
 
-const ButtonSave = new Button(0, 0, 50, 25)
+const ButtonSave = new Button(ww - 50, 0, 50, 25)
 ButtonSave.innerText = "Save"
 ButtonSave.color = "#fff"
 ButtonSave.stroke = "#fff"
@@ -282,7 +282,7 @@ function setup() {
    createCanvas()
    cw = ww
    ch = wh
-   prevent = false // block touch in mobile phone
+   prevent = true // block touch in mobile phone
    Gird.init()
    ButtonSave.init()
    ButtonSave.on("click", () => {
@@ -297,7 +297,7 @@ function setup() {
       let base64 = context.canvas.toBlob(blob => {
          let a = my("<a>")[0]
          a.href = URL.createObjectURL(blob)
-         a.download = Math.random() + ".png"
+         a.download = Math.random().toString(36) + ".png"
          a.click()
          URL.revokeObjectURL(a.href)
       })
